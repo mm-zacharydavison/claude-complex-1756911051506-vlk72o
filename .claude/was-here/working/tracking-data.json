@@ -1,0 +1,28 @@
+{
+  "records": [
+    {
+      "filePath": "src/UserService.ts",
+      "toolName": "Write",
+      "sessionId": "e2e-test-session-1756911055057",
+      "timestamp": 1756911055090,
+      "gitPatchHunks": [
+        [
+          "@@ -0,0 +1,13 @@",
+          "+export class UserService {",
+          "+  private users: Map<string, any> = new Map();",
+          "+  ",
+          "+  create(name: string): string {",
+          "+    const id = Math.random().toString(36);",
+          "+    this.users.set(id, { id, name });",
+          "+    return id;",
+          "+  }",
+          "+  ",
+          "+  get(id: string): any {",
+          "+    return this.users.get(id);",
+          "+  }",
+          "+}"
+        ]
+      ]
+    }
+  ]
+}
