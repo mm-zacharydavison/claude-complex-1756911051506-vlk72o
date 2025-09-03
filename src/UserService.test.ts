@@ -1,0 +1,24 @@
+import { describe, test, expect } from 'bun:test';
+import { UserService } from './UserService';
+
+describe('UserService', () => {
+  test('creates user with valid name', () => {
+    const service = new UserService();
+    const id = service.create('John');
+    expect(id).toBeDefined();
+    expect(service.get(id)?.name).toBe('John');
+  });
+  
+  test('rejects invalid name', () => {
+    const service = new UserService();
+    expect(() => service.create('x')).toThrow('Invalid name');
+  });
+  
+  test('enforces user limit', () => {
+    const service = new UserService();
+    for (let i = 0; i < 100; i++) {
+      service.create(`User${i}`);
+    }
+    expect(() => service.create('Extra')).toThrow('User limit reached');
+  });
+});
